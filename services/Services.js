@@ -30,3 +30,15 @@ export const getPopularTv = async () => {
   );
   return resp.data.results;
 };
+export const getAnimation = async () => {
+  const resp = await axios.get(
+    `${API_URL}/discover/movie?${API_KEY}&language=en-US&page=1&with_genres=16`,
+  );
+  return resp.data.results;
+};
+export const getDocumentary = async () => {
+  const resp = await axios.get(
+    `${API_URL}/discover/tv?${API_KEY}&language=en-US&page=1&with_genres=99`,
+  );
+  return resp.data.results;
+};
