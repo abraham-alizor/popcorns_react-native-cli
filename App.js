@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
+import {getPopularMovies} from './services/Services';
 
-const HelloWorldApp = () => {
+const App = () => {
+  const [movie, setMovie] = useState('');
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    getPopularMovies()
+      .then(movies => {
+        setMovie(movies[0]);
+      })
+      .catch(err => {
+        setError(err);
+      });
+  }, []);
+
   return (
     <View
       style={{
@@ -9,8 +22,9 @@ const HelloWorldApp = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>Hello, world!</Text>
+      <Text>{movie.original_title}</Text>
+      {error && <Text style={{color: 'red'}}>Error in server</Text>}
     </View>
   );
 };
-export default HelloWorldApp;
+export default App;
