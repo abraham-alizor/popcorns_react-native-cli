@@ -4,8 +4,9 @@ import {
   getAnimation,
   getDocumentary,
   getPopularMovies,
-  getPopularTv,
+  getLatestMovie,
   getUpcomingMovies,
+  getTopRated,
 } from '../services/Services';
 import {SliderBox} from 'react-native-image-slider-box';
 import {GlobalStyles} from '../App';
@@ -14,12 +15,12 @@ import Error from '../components/Error';
 
 const dimensions = Dimensions.get('screen');
 
-const Home = () => {
+const Home = ({navigation}) => {
   const getData = () => {
     return Promise.all([
       getUpcomingMovies(),
       getPopularMovies(),
-      getPopularTv(),
+      getTopRated(),
       getAnimation(),
       getDocumentary(),
     ]);
@@ -27,7 +28,7 @@ const Home = () => {
 
   const [movieImages, setMovieImages] = useState();
   const [popularMovies, setPopularMovies] = useState();
-  const [popularTv, setPopularTv] = useState();
+  const [topRated, setTopRated] = useState();
   const [animation, setAnimation] = useState();
   const [documentary, setDocumentary] = useState();
   const [error, setError] = useState(false);
@@ -39,7 +40,7 @@ const Home = () => {
         ([
           upcomingMoviesData,
           popularMoviesData,
-          popularTvData,
+          topRatedData,
           animationData,
           documentaryData,
         ]) => {
@@ -52,7 +53,7 @@ const Home = () => {
 
           setMovieImages(moviesImagesArray);
           setPopularMovies(popularMoviesData);
-          setPopularTv(popularTvData);
+          setTopRated(topRatedData);
           setAnimation(animationData);
           setDocumentary(documentaryData);
         },
@@ -84,14 +85,36 @@ const Home = () => {
           )}
           {/* popular movies */}
           {popularMovies && (
-            <List title="Popular Tv Shows" content={popularTv} />
+            <List
+              navigation={navigation}
+              title="Popular Movies"
+              content={popularMovies}
+            />
           )}
-          {/* popular Tv */}
-          {popularTv && <List title="Popular Movies" content={popularMovies} />}
+          {/* Top Rated movies */}
+          {topRated && (
+            <List
+              navigation={navigation}
+              title="Top Rated Movies"
+              content={topRated}
+            />
+          )}
           {/* animation */}
-          {animation && <List title="Animations" content={animation} />}
+          {animation && (
+            <List
+              navigation={navigation}
+              title="Animations"
+              content={animation}
+            />
+          )}
           {/* documentary */}
-          {documentary && <List title="Doumentary" content={documentary} />}
+          {documentary && (
+            <List
+              navigation={navigation}
+              title="Doumentary"
+              content={documentary}
+            />
+          )}
         </ScrollView>
       )}
       {!loaded && <ActivityIndicator size="large" color="#00ff00" />}

@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 const propTypes = {
   item: PropTypes.object,
 };
-const placeholderImage = require('../assets/images/placeholder.png');
+export const placeholderImage = require('../assets/images/placeholder.png');
 
 export class Card extends Component {
   render() {
-    const {item} = this.props;
+    const {navigation, item} = this.props;
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => navigation.navigate('Details', {movieId: item.id})}>
         <Image
           style={styles.image}
           source={

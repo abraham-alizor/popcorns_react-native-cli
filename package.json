@@ -10,11 +10,20 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
+    "dateformat": "^5.0.2",
     "dotenv": "^10.0.0",
     "react": "17.0.2",
     "react-native": "0.66.4",
-    "react-native-image-slider-box": "^1.1.13"
+    "react-native-image-slider-box": "^1.1.13",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.1",
+    "react-native-star-rating": "^1.1.0",
+    "react-native-vector-icons": "^9.0.0",
+    "react-native-video": "^5.2.0",
+    "react-native-video-controls": "^2.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

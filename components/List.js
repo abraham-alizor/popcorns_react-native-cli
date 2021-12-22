@@ -10,7 +10,7 @@ const propTypes = {
 
 export class List extends Component {
   render() {
-    const {title, content} = this.props;
+    const {navigation, title, content} = this.props;
     return (
       <View style={styles.container}>
         <View>
@@ -21,7 +21,9 @@ export class List extends Component {
             data={content}
             horizontal
             keyExtractor={item => item.id}
-            renderItem={({item}) => <Card item={item} />}
+            renderItem={({item}) => (
+              <Card navigation={navigation} item={item} />
+            )}
           />
         </View>
       </View>

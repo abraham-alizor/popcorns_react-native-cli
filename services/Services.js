@@ -7,38 +7,38 @@ const API_URL = 'https://api.themoviedb.org/3';
 //Popular Movies
 
 export const getPopularMovies = async () => {
-  const resp = await axios.get(
-    `${API_URL}/movie/popular?${API_KEY}&language=en-US&page=1`,
-  );
+  const resp = await axios.get(`${API_URL}/movie/popular?${API_KEY}`);
   return resp.data.results;
 };
 
 //upcoming Movies
 
 export const getUpcomingMovies = async () => {
-  const resp = await axios.get(
-    `${API_URL}/movie/upcoming?${API_KEY}&language=en-US&page=1`,
-  );
+  const resp = await axios.get(`${API_URL}/movie/upcoming?${API_KEY}`);
   return resp.data.results;
 };
 
 //Popular TV series
 
-export const getPopularTv = async () => {
-  const resp = await axios.get(
-    `${API_URL}/tv/popular?${API_KEY}&language=en-US&page=1`,
-  );
+export const getTopRated = async () => {
+  const resp = await axios.get(`${API_URL}/movie/top_rated?${API_KEY}`);
   return resp.data.results;
 };
 export const getAnimation = async () => {
   const resp = await axios.get(
-    `${API_URL}/discover/movie?${API_KEY}&language=en-US&page=1&with_genres=16`,
+    `${API_URL}/discover/movie?${API_KEY}&with_genres=16`,
   );
   return resp.data.results;
 };
 export const getDocumentary = async () => {
   const resp = await axios.get(
-    `${API_URL}/discover/tv?${API_KEY}&language=en-US&page=1&with_genres=99`,
+    `${API_URL}/discover/movie?${API_KEY}&with_genres=99`,
   );
   return resp.data.results;
+};
+
+// details
+export const getMovie = async id => {
+  const resp = await axios.get(`${API_URL}/movie/${id}?${API_KEY}`);
+  return resp.data;
 };
